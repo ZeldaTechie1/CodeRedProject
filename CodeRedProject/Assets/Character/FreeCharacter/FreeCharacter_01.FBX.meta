@@ -58,6 +58,37 @@ ModelImporter:
     100104: Bip001 Spine2
     100106: Body_01
     100108: //RootNode
+    100110: Ankle.l
+    100112: Ankle.r
+    100114: Camera
+    100116: Collar.l
+    100118: Collar.r
+    100120: Elbow.l
+    100122: Elbow.r
+    100124: Fingers.l
+    100126: Fingers.l_end
+    100128: Fingers.r
+    100130: Fingers.r_end
+    100132: Foot.l
+    100134: Foot.l_end
+    100136: Foot.r
+    100138: Foot.r_end
+    100140: Hand.l
+    100142: Hand.r
+    100144: Head_center
+    100146: Head_center_end
+    100148: Hip.l
+    100150: Hip.r
+    100152: Hip_center
+    100154: Knee.l
+    100156: Knee.r
+    100158: Lamp
+    100160: Neck_center
+    100162: Shoulder.l
+    100164: Shoulder.r
+    100166: Spine_center
+    100168: Wrist.l
+    100170: Wrist.r
     400000: Bip001
     400002: Bip001 Head
     400004: Bip001 L Calf
@@ -113,6 +144,37 @@ ModelImporter:
     400104: Bip001 Spine2
     400106: Body_01
     400108: //RootNode
+    400110: Ankle.l
+    400112: Ankle.r
+    400114: Camera
+    400116: Collar.l
+    400118: Collar.r
+    400120: Elbow.l
+    400122: Elbow.r
+    400124: Fingers.l
+    400126: Fingers.l_end
+    400128: Fingers.r
+    400130: Fingers.r_end
+    400132: Foot.l
+    400134: Foot.l_end
+    400136: Foot.r
+    400138: Foot.r_end
+    400140: Hand.l
+    400142: Hand.r
+    400144: Head_center
+    400146: Head_center_end
+    400148: Hip.l
+    400150: Hip.r
+    400152: Hip_center
+    400154: Knee.l
+    400156: Knee.r
+    400158: Lamp
+    400160: Neck_center
+    400162: Shoulder.l
+    400164: Shoulder.r
+    400166: Spine_center
+    400168: Wrist.l
+    400170: Wrist.r
     4300000: Body_01
     9500000: //RootNode
     13700000: Body_01
@@ -139,7 +201,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00999999978
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
