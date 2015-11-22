@@ -6,7 +6,8 @@ public class Splitter : MonoBehaviour
 {
     protected Transform _transform;
     public GameObject myo = null;
-    GameManager manager;
+    public GameManager manager;
+    public bool splitted;
     //ThalmicMyo myo = null;
 
     protected virtual void Awake()
@@ -39,6 +40,8 @@ public class Splitter : MonoBehaviour
     {
         //ThalmicMyo thalmicMyo = col.myo.GetComponent<ThalmicMyo>();
         //thalmicMyo.Vibrate(Thalmic.Myo.VibrationType.Long);
+        go.GetComponent<Renderer>().material.color = Color.red;
+        splitted = true;
         manager.AddScore();
         splitable.Split(_transform);
     }

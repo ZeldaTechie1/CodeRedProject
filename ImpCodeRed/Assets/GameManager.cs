@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
 
     public int score;
     public int winScore;
-    Text scoreText;
+    public Text scoreText;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +16,12 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         scoreText.text = "Score: " + score;
+        if (score > winScore)
+        {
+            Debug.Log("Win!");
+           Application.LoadLevel("YouWin");
+        }
+
 	}
 
     public void AddScore()

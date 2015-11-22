@@ -16,7 +16,7 @@ public class ColorBoxByPose : MonoBehaviour
     // This object must have a ThalmicMyo script attached.
     public GameObject myo;
     ThalmicMyo TMyo;
-    bool vibe = false;
+    public bool vibe = false;
 
     // Materials to change to when poses are made.
     //public Material waveInMaterial;
@@ -82,11 +82,5 @@ public class ColorBoxByPose : MonoBehaviour
 
     // Extend the unlock if ThalmcHub's locking policy is standard, and notifies the given myo that a user action was
     // recognized.
-
-    public void Vibrate()
-    {
-        //Debug.Log("Vibrate you bitch");
-        vibe = true;
-    }
 
 }
