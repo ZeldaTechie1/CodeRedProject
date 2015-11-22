@@ -3,6 +3,8 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
+using VibrationType = Thalmic.Myo.VibrationType;
+
 [AddComponentMenu("Mesh Splitting/Splitable")]
 public class Splitable : MonoBehaviour, ISplitable
 {
@@ -33,6 +35,7 @@ public class Splitable : MonoBehaviour, ISplitable
 
     private bool _isSplitting = false;
     private bool _splitMesh = false;
+
 
     private void Awake()
     {
@@ -76,7 +79,6 @@ public class Splitable : MonoBehaviour, ISplitable
                     if (CreateCap) _meshSplitterSkinned[i].MeshCreateCaps();
                 }
             }
-
             if (anySplit) CreateNewObjects();
             _isSplitting = false;
         }
@@ -361,6 +363,8 @@ public class Splitable : MonoBehaviour, ISplitable
 
         return null;
     }
+
+
 
     protected virtual void PostProcessObject(GameObject go) { }
 }

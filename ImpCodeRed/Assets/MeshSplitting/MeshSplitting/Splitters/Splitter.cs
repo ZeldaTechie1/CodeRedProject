@@ -5,6 +5,9 @@ using UnityEngine;
 public class Splitter : MonoBehaviour
 {
     protected Transform _transform;
+    public GameObject myo = null;
+    GameManager manager;
+    //ThalmicMyo myo = null;
 
     protected virtual void Awake()
     {
@@ -12,11 +15,17 @@ public class Splitter : MonoBehaviour
         GetComponent<Collider>().isTrigger = true;
     }
 
+    void Update()
+    {
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         MonoBehaviour[] components = other.GetComponents<MonoBehaviour>();
         foreach (MonoBehaviour component in components)
         {
+            
             ISplitable splitable = component as ISplitable;
             if (splitable != null)
             {
@@ -28,6 +37,9 @@ public class Splitter : MonoBehaviour
 
     protected virtual void SplitObject(ISplitable splitable, GameObject go)
     {
+        //ThalmicMyo thalmicMyo = col.myo.GetComponent<ThalmicMyo>();
+        //thalmicMyo.Vibrate(Thalmic.Myo.VibrationType.Long);
+        manager.AddScore();
         splitable.Split(_transform);
     }
 }

@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using LockingPolicy = Thalmic.Myo.LockingPolicy;
-using Pose = Thalmic.Myo.Pose;
-using UnlockType = Thalmic.Myo.UnlockType;
 using VibrationType = Thalmic.Myo.VibrationType;
 
 // Change the material when certain poses are made with the Myo armband.
@@ -17,7 +14,9 @@ public class ColorBoxByPose : MonoBehaviour
     private bool contVibe = false;
     // Myo game object to connect with.
     // This object must have a ThalmicMyo script attached.
-    public GameObject myo = null;
+    public GameObject myo;
+    ThalmicMyo TMyo;
+    bool vibe = false;
 
     // Materials to change to when poses are made.
     //public Material waveInMaterial;
@@ -32,12 +31,12 @@ public class ColorBoxByPose : MonoBehaviour
 
     void OnCollisionEnter (Collision other)
     {
-        if (other.gameObject.name == "Sphere1")
+        if (other.gameObject.tag == "Fruits")
         {
             Debug.Log("conttt");
             contVibe = true;
         }
-        if (other.gameObject.name == "Sphere")
+        if (other.gameObject.name == "Sphere1")
         {
             testTrig = true;
         }
@@ -46,11 +45,11 @@ public class ColorBoxByPose : MonoBehaviour
 
     void OnCollisionExit (Collision col)
     {
-        if (col.gameObject.name == "Sphere")
+        if (col.gameObject.name == "Sphere1")
         {
             testTrig = false;
         }
-        if (col.gameObject.name == "Sphere1")
+        if (col.gameObject.name == "Sphere")
         {
             Debug.Log("cont is false");
             contVibe = false;
@@ -63,90 +62,31 @@ public class ColorBoxByPose : MonoBehaviour
     // Update is called once per frame.
     void Update ()
     {
+        
         // Access the ThalmicMyo component attached to the Myo game object.
-        ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo> ();
-
-        // Check if the pose has changed since last update.
-        // The ThalmicMyo component of a Myo game object has a pose property that is set to the
-        // currently detected pose (e.g. Pose.Fist for the user making a fist). If no pose is currently
-        // detected, pose will be set to Pose.Rest. If pose detection is unavailable, e.g. because Myo
-        // is not on a user's arm, pose will be set to Pose.Unknown.
+        ThalmicMyo TMyo = myo.GetComponent<ThalmicMyo> ();
         totalTime += Time.deltaTime;
-
-        Debug.Log(this.gameObject.name);
-        Debug.Log(contVibe);
-        if (contVibe == true)
-        {
-            Debug.Log("cont");
-            if ((totalTime >= .25f))
-            {
-                thalmicMyo.Vibrate(VibrationType.Short);
-                totalTime = 0.0f;
-            }           
-        }
         
-        if (testTrig == true)
-        {
-            Debug.Log("sphere");
-           
-            if (pause1 == false)
-            {
-                if ((totalTime >= .25f) && (count != 2))
-                {
-                    thalmicMyo.Vibrate(VibrationType.Short);
-                    totalTime = 0.0f;
-                    count++;
-                }
-                if (count == 2)
-                {
-                    count = 0;
-                    pause1 = true;
-                }
-            }
-            else if (totalTime > 1)
-            {
-                pause1 = false;
-            }
-        }
+        
         
 
-        /*if (thalmicMyo.pose != _lastPose) {
-            _lastPose = thalmicMyo.pose;
+        if (vibe)
+        {
+            Debug.Log("Vibrate");
+            vibe = false;
+            TMyo.Vibrate(VibrationType.Medium);
+        }
 
-            // Vibrate the Myo armband when a fist is made.
-            if (thalmicMyo.pose == Pose.Fist) {
-                thalmicMyo.Vibrate(VibrationType.Long);
-
-                ExtendUnlockAndNotifyUserAction(thalmicMyo);
-
-                // Change material when wave in, wave out or double tap poses are made.
-            } else if (thalmicMyo.pose == Pose.WaveIn) {
-                GetComponent<Renderer>().material = waveInMaterial;
-                thalmicMyo.Vibrate(VibrationType.Medium);
-
-                ExtendUnlockAndNotifyUserAction(thalmicMyo);
-            } else if (thalmicMyo.pose == Pose.WaveOut) {
-                GetComponent<Renderer>().material = waveOutMaterial;
-
-                ExtendUnlockAndNotifyUserAction(thalmicMyo);
-            } else if (thalmicMyo.pose == Pose.DoubleTap) {
-                GetComponent<Renderer>().material = doubleTapMaterial;
-
-                ExtendUnlockAndNotifyUserAction(thalmicMyo);
-            }
-        }*/
+        Debug.Log(vibe);
     }
 
     // Extend the unlock if ThalmcHub's locking policy is standard, and notifies the given myo that a user action was
     // recognized.
-    void ExtendUnlockAndNotifyUserAction (ThalmicMyo myo)
+
+    public void Vibrate()
     {
-        ThalmicHub hub = ThalmicHub.instance;
-
-        if (hub.lockingPolicy == LockingPolicy.Standard) {
-            myo.Unlock (UnlockType.Timed);
-        }
-
-        myo.NotifyUserAction ();
+        //Debug.Log("Vibrate you bitch");
+        vibe = true;
     }
+
 }
