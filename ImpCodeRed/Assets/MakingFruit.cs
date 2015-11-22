@@ -16,7 +16,7 @@ public class MakingFruit : MonoBehaviour {
 	void Update () {
         timer += Time.deltaTime;
 
-        if (timer > 1)
+        if (timer > 2)
         {
             Instantiate(fruit, array[Random.Range(0, array.Length)].transform.position, Quaternion.identity);
             timer = 0;
